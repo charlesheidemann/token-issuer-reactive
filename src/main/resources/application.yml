@@ -1,0 +1,25 @@
+REQUEST_TOPIC: token-request
+RESPONSE_TOPIC: token-response
+
+server:
+  port: 8080
+
+spring:
+
+  application:
+    name: token-issuer
+
+  kafka:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+      template:
+      defaultTopic:
+
+    consumer:
+      group-id: token-issuer
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
